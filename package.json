@@ -1,0 +1,12 @@
+{
+  "name": "gdps-discord-setup",
+  "version": "1.0.0",
+  "description": "Script automatizado para configurar la estructura de un servidor de Discord para GDPS",
+  "main": "bot-setup.js",
+  "scripts": {
+    "start": "node bot-setup.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  }
+}
