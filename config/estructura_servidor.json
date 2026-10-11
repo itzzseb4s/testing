@@ -1,0 +1,51 @@
+{
+  "server_name": "GDPS Community",
+  "astral_theme": {
+    "symbols": ["✦", "✧", "⬡", "◈", "⟡"],
+    "palette": {
+      "graphite": "#17191F",
+      "slate": "#343844",
+      "silver": "#C7CAD4",
+      "ice": "#F3F4F7"
+    }
+  },
+  "roles": [
+    { "name": "✦ Fundador", "color": "#17191F", "hoist": true, "permissions": "MANAGE_GUILD" },
+    { "name": "⬡ Staff Técnico / Dev", "color": "#343844", "hoist": true, "permissions": "MANAGE_WEBHOOKS" },
+    { "name": "✧ Moderador", "color": "#C7CAD4", "hoist": true, "permissions": "MANAGE_MESSAGES, KICK_MEMBERS" },
+    { "name": "◈ Juez / Reviewer", "color": "#F3F4F7", "hoist": true, "permissions": "READ_MESSAGES" },
+    { "name": "⟡ Creador Verificado", "color": "#343844", "hoist": true, "permissions": "ATTACH_FILES" },
+    { "name": "✦ Miembro", "color": "#C7CAD4", "hoist": false, "permissions": "SEND_MESSAGES" }
+  ],
+  "categories": [
+    {
+      "name": "✦・INICIO",
+      "channels": ["bienvenida", "reglas", "anuncios", "informacion-gdps", "roles"]
+    },
+    {
+      "name": "✧・COMUNIDAD",
+      "channels": ["general", "presentaciones", "capturas-y-clips", "off-topic"]
+    },
+    {
+      "name": "⬡・CREACIÓN",
+      "channels": ["showcase", "busqueda-de-creadores", "feedback-de-niveles", "ayuda-de-editor", "texturas-y-recursos"]
+    },
+    {
+      "name": "◈・PLAYTESTING Y RATES",
+      "channels": ["solicitar-playtest", "cola-de-playtesting", "resultados-playtest", "solicitar-rate", "cola-de-rates", "decisiones-de-review"]
+    },
+    {
+      "name": "⟡・SOPORTE",
+      "channels": ["soporte-tecnico", "reportar-error", "estado-del-servidor", "tickets"]
+    },
+    {
+      "name": "✦・EVENTOS",
+      "channels": ["eventos", "level-jams", "concursos", "inscripciones", "resultados"]
+    },
+    {
+      "name": "◈・STAFF PRIVADO",
+      "channels": ["staff-chat", "mod-log", "reportes-privados", "reuniones-y-decisiones", "dev-chat", "incidentes-tecnicos", "reviewers", "planificacion-eventos"],
+      "private": true
+    }
+  ]
+}
