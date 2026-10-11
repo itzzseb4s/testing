@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { Client, GatewayIntentBits, PermissionFlagsBits } = require('discord.js');
 
 const token = process.env.DISCORD_BOT_TOKEN;
 const guildId = process.env.GUILD_ID;
@@ -10,251 +10,118 @@ if (!token || !guildId) {
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-// Paleta de colores astronómica / GD
-const COLORS = {
-    graphite: 0x17191F,
-    slate: 0x343844,
-    silver: 0xC7CAD4,
-    ice: 0xF3F4F7
-};
-
 const structure = {
-    roles: [
-        { name: "✦ Fundador", color: COLORS.graphite, permissions: [] },
-        { name: "⬡ Staff Técnico / Dev", color: COLORS.slate, permissions: [] },
-        { name: "✧ Moderador", color: COLORS.silver, permissions: [PermissionFlagsBits.ManageMessages, PermissionFlagsBits.KickMembers] },
-        { name: "◈ Juez / Reviewer", color: COLORS.ice, permissions: [] },
-        { name: "⟡ Creador Verificado", color: COLORS.slate, permissions: [] },
-        { name: "✦ Miembro", color: COLORS.silver, permissions: [] }
-    ],
     categories: [
         {
-            name: "✦・INFORMACIÓN",
+            name: "✦・INICIO",
             channels: [
-                {
-                    name: "✦・bienvenida",
-                    embed: new EmbedBuilder()
-                        .setTitle("✦ Bienvenid@ a la Comunidad GDPS")
-                        .setDescription("¡Hola! Te damos la bienvenida a nuestro espacio dedicado a la creación, juego y superación en Geometry Dash.\n\n✧ **Primeros pasos:**\n- Lee las normas en <#✦・reglas>.\n- Entérate del estado del servidor en <#✦・gdps-info>.\n- Elige tus roles en <#✦・roles>.\n\n*Create. Test. Improve.*")
-                        .setColor(COLORS.ice)
-                },
-                {
-                    name: "✦・reglas",
-                    embed: new EmbedBuilder()
-                        .setTitle("⬡ Normas del Servidor")
-                        .setDescription("1. **Respeto:** Mantén un ambiente sano. Cero tolerancia al acoso o discriminación.\n2. **Contenido:** Prohibido el contenido NSFW, gore o enlaces sospechosos.\n3. **Spam:** Utiliza los canales adecuados (<#⬡・showcase>) para compartir tus niveles.\n4. **Tickets:** No etiquetes al Staff directamente; usa el sistema de <#⟡・tickets>.")
-                        .setColor(COLORS.slate)
-                },
-                {
-                    name: "✦・anuncios",
-                    embed: new EmbedBuilder()
-                        .setTitle("📢 Anuncios Oficiales")
-                        .setDescription("Canal exclusivo para novedades del GDPS, actualizaciones de versión e información relevante.")
-                        .setColor(COLORS.graphite)
-                },
-                {
-                    name: "✦・gdps-info",
-                    embed: new EmbedBuilder()
-                        .setTitle("◈ Información del GDPS")
-                        .setDescription("**Descargas y Conexión:**\n- **Launcher / APK:** `ENLACE_DEL_GDPS`\n- **Versión:** 2.2+\n- **Servidor:** Online\n\nSi experimentas problemas al ingresar, dirígete a <#⟡・tickets>.")
-                        .setColor(COLORS.ice)
-                },
-                {
-                    name: "✦・roles",
-                    embed: new EmbedBuilder()
-                        .setTitle("⟡ Auto-Roles")
-                        .setDescription("Reacciona o interactúa aquí para obtener tus roles de notificación y personalización de perfil.")
-                        .setColor(COLORS.silver)
-                }
+                { name: "✦・bienvenida", topic: "Saludos a los nuevos miembros y primeros pasos en la comunidad." },
+                { name: "✦・reglas", topic: "Normas de convivencia, sanciones y conducta en el servidor." },
+                { name: "✦・anuncios", topic: "Novedades oficiales, mantenimientos y noticias del GDPS." },
+                { name: "✦・info", topic: "Links de descarga, estado del servidor y datos del GDPS." },
+                { name: "✦・roles", topic: "Auto-asignación de roles y preferencias de notificaciones." }
             ]
         },
         {
             name: "✧・COMUNIDAD",
             channels: [
-                {
-                    name: "✧・chat",
-                    embed: new EmbedBuilder()
-                        .setTitle("💬 Chat General")
-                        .setDescription("Espacio principal para hablar sobre Geometry Dash y convivir con la comunidad.")
-                        .setColor(COLORS.ice)
-                },
-                {
-                    name: "✧・medias",
-                    embed: new EmbedBuilder()
-                        .setTitle("🖼️ Capturas y Clips")
-                        .setDescription("Comparte tus mejores momentos, progresos en niveles, récords y memes de GD.")
-                        .setColor(COLORS.silver)
-                },
-                {
-                    name: "✧・offtopic",
-                    embed: new EmbedBuilder()
-                        .setTitle("🎲 Off-Topic")
-                        .setDescription("Para hablar de cualquier tema ajeno a Geometry Dash.")
-                        .setColor(COLORS.slate)
-                }
+                { name: "✧・general", topic: "Chat principal para hablar de Geometry Dash y el GDPS." },
+                { name: "✧・medias", topic: "Capturas, clips, videos e imágenes de la comunidad." },
+                { name: "✧・offtopic", topic: "Charlas casuales sobre otros temas fuera de GDPS." }
             ]
         },
         {
             name: "⬡・CREACIÓN",
             channels: [
-                {
-                    name: "⬡・showcase",
-                    embed: new EmbedBuilder()
-                        .setTitle("✨ Showcase de Niveles")
-                        .setDescription("Publica los avances o entregas finales de tus niveles con este formato:\n- **Nombre:**\n- **ID:**\n- **Dificultad:**\n- **Video/Captura:**")
-                        .setColor(COLORS.ice)
-                },
-                {
-                    name: "⬡・feedback",
-                    embed: new EmbedBuilder()
-                        .setTitle("🛠️ Feedback y Opiniones")
-                        .setDescription("Pide críticas constructivas para tus layouts, decoración o gameplay.")
-                        .setColor(COLORS.silver)
-                },
-                {
-                    name: "⬡・recursos",
-                    embed: new EmbedBuilder()
-                        .setTitle("🎨 Recursos y Texturas")
-                        .setDescription("Textpacks, canciones, triggers y guías para la creación de niveles.")
-                        .setColor(COLORS.slate)
-                }
+                { name: "⬡・showcase", topic: "Muestra tus niveles, avances de layouts y decoraciones." },
+                { name: "⬡・colabs", topic: "Búsqueda de creadores, decoradores y layoutmakers." },
+                { name: "⬡・feedback", topic: "Pide opinión constructiva para mejorar tu nivel." },
+                { name: "⬡・editor", topic: "Consejos, dudas de triggers y ayuda con el editor de GD." },
+                { name: "⬡・recursos", topic: "Texturas, SFX, canciones y assets para creadores." }
             ]
         },
         {
             name: "◈・RATES Y TESTS",
             channels: [
-                {
-                    name: "◈・pedir-test",
-                    embed: new EmbedBuilder()
-                        .setTitle("🧪 Solicitar Playtest")
-                        .setDescription("Pide a los playtesters que prueben tu nivel antes de solicitar Rate. Envía ID y dificultad estimada.")
-                        .setColor(COLORS.ice)
-                },
-                {
-                    name: "◈・pedir-rate",
-                    embed: new EmbedBuilder()
-                        .setTitle("⭐ Solicitud de Rate")
-                        .setDescription("¿Nivel terminado y listo? Envía la ID y un video para revisión de los Reviewers.")
-                        .setColor(COLORS.silver)
-                },
-                {
-                    name: "◈・decisiones",
-                    embed: new EmbedBuilder()
-                        .setTitle("📋 Registro de Rates")
-                        .setDescription("Aquí se publicarán los resultados de las revisiones de niveles (Star, Featured, Epic).")
-                        .setColor(COLORS.graphite)
-                }
+                { name: "◈・playtest", topic: "Envía tu nivel para que la comunidad pruebe el gameplay." },
+                { name: "◈・solicitar-rate", topic: "Formulario e hilos para pedir Rate o Featured en el GDPS." },
+                { name: "◈・decisiones", topic: "Anuncios oficiales de niveles enviados, aprobados o con Rate." }
             ]
         },
         {
             name: "⟡・SOPORTE",
             channels: [
-                {
-                    name: "⟡・ayuda",
-                    embed: new EmbedBuilder()
-                        .setTitle("❓ Preguntas Frecuentes")
-                        .setDescription("Consulta la solución a errores comunes antes de abrir un ticket de soporte.")
-                        .setColor(COLORS.ice)
-                },
-                {
-                    name: "⟡・tickets",
-                    embed: new EmbedBuilder()
-                        .setTitle("📩 Centro de Soporte")
-                        .setDescription("Abre un ticket técnico para recibir atención directa del Staff de soporte.")
-                        .setColor(COLORS.silver)
-                },
-                {
-                    name: "⟡・estado",
-                    embed: new EmbedBuilder()
-                        .setTitle("🟢 Estado de los Servicios")
-                        .setDescription("Reporte en tiempo real sobre el estado del GDPS, la base de datos y la web.")
-                        .setColor(COLORS.slate)
-                }
+                { name: "⟡・ayuda", topic: "Guías rápidas para solucionar errores comunes de conexión o juego." },
+                { name: "⟡・tickets", topic: "Abre un ticket privado para atención directa del Staff." },
+                { name: "⟡・estado", topic: "Monitoreo en tiempo real del estado de los servidores y base de datos." }
             ]
         },
         {
-            name: "✦・EVENTOS",
+            name: "⭒・EVENTOS",
             channels: [
-                {
-                    name: "✦・jams",
-                    embed: new EmbedBuilder()
-                        .setTitle("🏆 Level Jams")
-                        .setDescription("Concursos de creación con temáticas y plazos definidos. ¡Demuestra tu talento!")
-                        .setColor(COLORS.ice)
-                },
-                {
-                    name: "✦・torneos",
-                    embed: new EmbedBuilder()
-                        .setTitle("⚔️ Torneos y Desafíos")
-                        .setDescription("Competencias de juego, verficación de demons y desafíos para la comunidad.")
-                        .setColor(COLORS.silver)
-                }
+                { name: "⭒・info-eventos", topic: "Anuncios de Level Jams, concursos y desafíos activos." },
+                { name: "⭒・inscripciones", topic: "Registro de participantes y equipos para eventos." },
+                { name: "⭒・ganadores", topic: "Resultados oficiales y premiación de concursos." }
             ]
         },
         {
-            name: "◈・STAFF PRIVADO",
+            name: "⚙・STAFF",
             private: true,
             channels: [
-                { name: "◈・chat-staff", embed: null },
-                { name: "◈・log-mods", embed: null },
-                { name: "◈・devs", embed: null },
-                { name: "◈・reviewers", embed: null }
+                { name: "⚙・chat-staff", topic: "Espacio de coordinación general entre Moderadores y Devs." },
+                { name: "⚙・logs", topic: "Registro de moderación, sanciones e incidentes." },
+                { name: "⚙・devs", topic: "Discusión técnica de la base de datos, servidor e infraestructura." },
+                { name: "⚙・reviewers", topic: "Panel interno de discusión sobre los niveles para Rate." }
             ]
         }
     ]
 };
 
 client.once('ready', async () => {
-    console.log(`Bot iniciado correctamente como: ${client.user.tag}`);
+    console.log(`Conectado como ${client.user.tag}`);
     const guild = client.guilds.cache.get(guildId);
-    
     if (!guild) {
-        console.error("Servidor no encontrado. Revisa el GUILD_ID.");
+        console.error("Servidor no encontrado.");
         process.exit(1);
     }
 
     try {
-        console.log("--- Configurando Roles ---");
-        const existingRoles = await guild.roles.fetch();
-        for (const rData of structure.roles) {
-            let role = existingRoles.find(r => r.name === rData.name);
-            if (!role) {
-                await guild.roles.create({ name: rData.name, color: rData.color, permissions: rData.permissions });
-                console.log(`[+] Rol creado: ${rData.name}`);
-            }
-        }
-
-        console.log("--- Configurando Categorías y Canales ---");
+        console.log("Eliminando canales viejos para resetear la estructura...");
         const existingChannels = await guild.channels.fetch();
+        for (const [id, channel] of existingChannels) {
+            await channel.delete('Limpieza para aplicar nueva estructura').catch(() => {});
+        }
 
+        console.log("Creando nuevas categorías y canales optimizados...");
         for (const catData of structure.categories) {
-            let category = existingChannels.find(c => c.name === catData.name && c.type === 4);
-            if (!category) {
-                const overwrites = catData.private ? [{ id: guild.id, deny: [PermissionFlagsBits.ViewChannel] }] : [];
-                category = await guild.channels.create({ name: catData.name, type: 4, permissionOverwrites: overwrites });
-                console.log(`[+] Categoría creada: ${catData.name}`);
+            const overwrites = [];
+            if (catData.private) {
+                overwrites.push({
+                    id: guild.id,
+                    deny: [PermissionFlagsBits.ViewChannel]
+                });
             }
 
-            for (const chData of catData.channels) {
-                let channel = existingChannels.find(c => c.name === chData.name && c.parentId === category.id);
-                if (!channel) {
-                    channel = await guild.channels.create({ name: chData.name, type: 0, parent: category.id });
-                    console.log(`  [+] Canal creado: #${chData.name}`);
+            const category = await guild.channels.create({
+                name: catData.name,
+                type: 4,
+                permissionOverwrites: overwrites
+            });
 
-                    // Enviar Embed e inmovilizar/fijar mensaje automáticamente si existe
-                    if (chData.embed) {
-                        const msg = await channel.send({ embeds: [chData.embed] });
-                        await msg.pin();
-                        console.log(`      └─ Mensaje inicial fijado en #${chData.name}`);
-                    }
-                }
+            for (const chan of catData.channels) {
+                await guild.channels.create({
+                    name: chan.name,
+                    topic: chan.topic,
+                    type: 0,
+                    parent: category.id
+                });
             }
         }
 
-        console.log("¡Toda la estructura y mensajes automáticos han sido creados de forma exitosa!");
+        console.log("¡Estructura actualizada con éxito!");
         process.exit(0);
-    } catch (err) {
-        console.error("Error durante el despliegue:", err);
+    } catch (error) {
+        console.error("Error al desplegar la estructura:", error);
         process.exit(1);
     }
 });
