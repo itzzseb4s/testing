@@ -3,8 +3,7 @@
   workflow_dispatch:
   jobs:  
   setup:   
-  runs-on: 
-  ubuntu-latest    
+  runs-on: ubuntu-latest    
   steps:      
   - name: Checkout del repositorio        
   uses: actions/checkout@v4      
