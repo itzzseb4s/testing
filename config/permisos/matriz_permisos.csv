@@ -1,0 +1,8 @@
+Rol,Ver Canales,Enviar Mensajes,Gestionar Mensajes,Expulsar Miembros,Gestionar Canales,Administrador
+✦ Fundador,Sí,Sí,Sí,Sí,Sí,Sí (Control Propietario)
+⬡ Staff Técnico / Dev,Sí (Área Dev),Sí (Área Dev),No,No,Parcial (Técnico),No
+✧ Moderador,Sí,Sí,Sí,Sí,No,No
+◈ Juez / Reviewer,Sí (Playtest/Staff),Sí (Playtest/Staff),No,No,No,No
+⟡ Creador Verificado,Sí,Sí,No,No,No,No
+✦ Miembro,Sí (Públicos),Sí (Públicos),No,No,No,No
+@everyone,Parcial,Parcial,No,No,No,No
